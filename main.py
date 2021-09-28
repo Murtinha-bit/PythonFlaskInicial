@@ -14,11 +14,16 @@ from sqlite3 import Error
 app = Flask(__name__)
 
 #######################################################
-# 1. Cadastrar produtos
+# 1. Pagina Inicial Simples
+#######################################################
 
 @app.route('/', methods =['GET'])
 def home():
     return('Pagina Inicial')
+
+#######################################################
+# 2. Cadastrar produtos
+#######################################################
     
 @app.route('/produtos/cadastrar', methods=['GET', 'POST'])
 def cadastrar():
@@ -55,6 +60,10 @@ def cadastrar():
 
     return render_template('cadastrar.html')
 
+#######################################################
+# 3. Excluir produtos
+#######################################################
+
 @app.route('/produtos/excluir', methods=['GET', 'POST'])
 def excluir():
     if request.method== 'POST':
@@ -74,6 +83,10 @@ def excluir():
             finally:
                 conn.close()
     return render_template('excluir.html')
+
+#######################################################
+# 4. Editar produtos
+#######################################################
     
 @app.route('/produtos/editar', methods=['GET', 'POST'])
 def editar():
@@ -109,7 +122,9 @@ def editar():
 
 
 #######################################################
-# 2. Listar produtos
+# 5. Listar produtos
+#######################################################
+
 @app.route('/produtos/listar', methods=['GET'])
 def listar():
     try:
